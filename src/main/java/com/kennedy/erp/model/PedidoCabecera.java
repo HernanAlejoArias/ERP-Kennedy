@@ -2,6 +2,7 @@ package com.kennedy.erp.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 public class PedidoCabecera {
@@ -10,13 +11,19 @@ public class PedidoCabecera {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @OneToOne
     private Cliente cliente;
 
+    @OneToOne
     private Vendedor vendedor;
 
+    @OneToOne
     private ModoPago modoPago;
 
     private LocalDateTime fechaCreacion;
+
+    @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
+    Set<PedidoDetalle> items;
 
     public PedidoCabecera() {
     }
@@ -54,5 +61,13 @@ public class PedidoCabecera {
 
     public LocalDateTime getFechaCreacion() {
         return fechaCreacion;
+    }
+
+    public Set<PedidoDetalle> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<PedidoDetalle> items) {
+        this.items = items;
     }
 }

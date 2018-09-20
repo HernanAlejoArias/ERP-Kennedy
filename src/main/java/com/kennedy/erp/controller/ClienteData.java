@@ -1,13 +1,12 @@
-package com.kennedy.erp.model;
+package com.kennedy.erp.controller;
+
+import com.kennedy.erp.model.TipoCliente;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-public class Cliente {
+public class ClienteData {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String nombre;
@@ -22,8 +21,7 @@ public class Cliente {
 
     private long cuit;
 
-    @OneToOne
-    private TipoCliente tipoCliente;
+    private int idTipoCliente;
 
     private String mail;
 
@@ -31,20 +29,19 @@ public class Cliente {
 
     private LocalDateTime fechaAlta;
 
-    public Cliente() {
+    public ClienteData() {
     }
 
-    public Cliente(String nombre, String apellido, String razonSocial, long dni, long cuil, long cuit, TipoCliente tipo_cliente, String mail, String direccion) {
+    public ClienteData(String nombre, String apellido, String razonSocial, long dni, long cuil, long cuit, int idTipoCliente, String mail, String direccion) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.razonSocial = razonSocial;
         this.dni = dni;
         this.cuil = cuil;
         this.cuit = cuit;
-        this.tipoCliente = tipo_cliente;
+        this.idTipoCliente = idTipoCliente;
         this.mail = mail;
         this.direccion = direccion;
-        this.fechaAlta = LocalDateTime.now();
     }
 
     public long getId() {
@@ -99,12 +96,12 @@ public class Cliente {
         this.cuit = cuit;
     }
 
-    public TipoCliente getTipo_cliente() {
-        return tipoCliente;
+    public int getIdTipoCliente() {
+        return idTipoCliente;
     }
 
-    public void setTipo_cliente(TipoCliente tipo_cliente) {
-        this.tipoCliente = tipo_cliente;
+    public void setIdTipoCliente(int idTipoCliente) {
+        this.idTipoCliente = idTipoCliente;
     }
 
     public String getMail() {
@@ -121,10 +118,6 @@ public class Cliente {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-
-    public LocalDateTime getFechaAlta() {
-        return fechaAlta;
     }
 
 }
