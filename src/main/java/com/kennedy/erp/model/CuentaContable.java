@@ -1,12 +1,10 @@
 package com.kennedy.erp.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 
 @Entity
-public class ModoPago {
+public class CuentaContable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,11 +12,15 @@ public class ModoPago {
 
     private String descripcion;
 
-    public ModoPago() {
+    public CuentaContable(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public ModoPago(String descripcion) {
-        this.descripcion = descripcion;
+    public CuentaContable() {
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getDescripcion() {
@@ -27,9 +29,5 @@ public class ModoPago {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public long getId() {
-        return id;
     }
 }

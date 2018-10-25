@@ -3,7 +3,7 @@ package com.kennedy.erp.model;
 import javax.persistence.*;
 
 @Entity
-public class PedidoDetalle {
+public class OrdenTrabajo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,12 +14,16 @@ public class PedidoDetalle {
 
     private long cantidad;
 
-    public PedidoDetalle() {
+    public OrdenTrabajo() {
     }
 
-    public PedidoDetalle(Producto producto, long cantidad) {
+    public OrdenTrabajo(Producto producto, long cantidad) {
         this.producto = producto;
         this.cantidad = cantidad;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public Producto getProducto() {

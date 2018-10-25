@@ -3,7 +3,7 @@ package com.kennedy.erp.model;
 import javax.persistence.*;
 
 @Entity
-public class PedidoDetalle {
+public class FacturaDetalle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,12 +14,15 @@ public class PedidoDetalle {
 
     private long cantidad;
 
-    public PedidoDetalle() {
+    private double precio;
+
+    public FacturaDetalle() {
     }
 
-    public PedidoDetalle(Producto producto, long cantidad) {
+    public FacturaDetalle(Producto producto, long cantidad, double precio) {
         this.producto = producto;
         this.cantidad = cantidad;
+        this.precio = precio;
     }
 
     public Producto getProducto() {
@@ -36,5 +39,13 @@ public class PedidoDetalle {
 
     public void setCantidad(long cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 }

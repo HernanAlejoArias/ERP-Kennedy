@@ -7,8 +7,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,7 +22,9 @@ public class ErpApplication {
 									  PublicidadRepository publicidadRepository, TipoClienteRepository tipoClienteRepository,
 									  EmpleadoRepository empleadoRepository, VendedorRepository vendedorRepository,
 									  ProductoRepository productoRepository, ModoPagoRepository modoPagoRepository,
-									  PedidoCabeceraRepository pedidoCabeceraRepository, PedidoDetalleRepository pedidoDetalleRepository
+									  PedidoCabeceraRepository pedidoCabeceraRepository, PedidoDetalleRepository pedidoDetalleRepository,
+									  StockProduccionRepository stockProductosRepository, ProveedorRepository proveedorRepository,
+									  MaterialRepository materialRepository, CuentaContableRepository cuentaContableRepository
 
 									) {
 		return (args) -> {
@@ -50,25 +50,55 @@ public class ErpApplication {
 			Vendedor vendedor1 = new Vendedor(empleado1);
 			vendedorRepository.save(vendedor1);
 
-			Producto metalPesado = new Producto("Metal Pesado");
-			productoRepository.save(metalPesado);
-
-			Producto cobre = new Producto("Cobre");
-			productoRepository.save(metalPesado);
-
-			Producto aluminio = new Producto("Aluminio");
-			productoRepository.save(metalPesado);
-
 			ModoPago efectivo = new ModoPago("Efectivo");
 			modoPagoRepository.save(efectivo);
 
+			CuentaContable caja = new CuentaContable("Caja");
+			cuentaContableRepository.save(caja);
+
+			CuentaContable iva = new CuentaContable("IVA");
+			cuentaContableRepository.save(iva);
+
+			CuentaContable ventaMercaderias = new CuentaContable("Venta de mercaderias");
+			cuentaContableRepository.save(ventaMercaderias);
+
+			CuentaContable proveedores = new CuentaContable("Proveedores");
+			cuentaContableRepository.save(proveedores);
+
+			CuentaContable percepciones = new CuentaContable("Percepciones");
+			cuentaContableRepository.save(percepciones);
+
+			CuentaContable materiales = new CuentaContable("Materiales");
+			cuentaContableRepository.save(materiales);
+
+            Producto puertaAluminio = new Producto("Puerta Aluminio", 1030d);
+
+            Producto ventanaAluminio = new Producto("Ventana Aluminio", 550d);
+
+            Producto ventanaHierro = new Producto("Ventana Hierro", 700d);
+
+			StockProducto entradaProducto1 = new StockProducto(puertaAluminio, 99);
+
+			StockProducto entradaProducto2 = new StockProducto(ventanaAluminio, 10);
+
+			StockProducto entradaProducto3 = new StockProducto(ventanaHierro, 2);
+
+            puertaAluminio.setStock(entradaProducto1);
+            productoRepository.save(puertaAluminio);
+
+            ventanaAluminio.setStock(entradaProducto2);
+            productoRepository.save(ventanaAluminio);
+
+            ventanaHierro.setStock(entradaProducto3);
+            productoRepository.save(ventanaHierro);
+
 			Set<PedidoDetalle> pedidoDetalle = new HashSet<>();
-			PedidoDetalle item1 = new PedidoDetalle(metalPesado, 2);
+			PedidoDetalle item1 = new PedidoDetalle(puertaAluminio, 2);
 			pedidoDetalle.add(item1);
 
 			//pedidoDetalleRepository.save(item1);
 
-			PedidoDetalle item2 = new PedidoDetalle(metalPesado, 6);
+			PedidoDetalle item2 = new PedidoDetalle(ventanaHierro, 6);
 			pedidoDetalle.add(item2);
 			//pedidoDetalleRepository.save(item2);
 
@@ -79,6 +109,26 @@ public class ErpApplication {
 			Set<PedidoDetalle> tempItems = new HashSet<>();
 			tempItems.add(item1);
 			pedido1cab.setItems(tempItems);
+
+			Proveedor proveedor1 = new Proveedor("Hernan Alejo", "Proveedor", "HernanAlejoArias", 29747542L, 20297475429L, 20297475429L, "harias1982@gmail.com", "Rangugni 2934");
+			proveedorRepository.save(proveedor1);
+
+			Proveedor proveedor2 = new Proveedor("Marina", "Proveedor", "Brand Team", 29601509L, 20296015099L, 20296015099L, "marinita@gmail.com", "Rangugni 2934");
+			proveedorRepository.save(proveedor2);
+
+			Material hierro = new Material("Hierro");
+
+			Material aluminio = new Material("Aluminio");
+
+			StockMaterial entradaMaterial1 = new StockMaterial(hierro, 100);
+
+			StockMaterial entradaMaterial2 = new StockMaterial(aluminio, 30);
+
+			hierro.setStock(entradaMaterial1);
+			materialRepository.save(hierro);
+
+			aluminio.setStock(entradaMaterial2);
+			materialRepository.save(aluminio);
 
 		};
 	}

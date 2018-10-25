@@ -26,4 +26,8 @@ public class Vendedor {
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     }
+
+    public long getId() {
+        return id;
+    }
 }

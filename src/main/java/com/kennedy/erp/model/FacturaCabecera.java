@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Entity
-public class PedidoCabecera {
+public class FacturaCabecera {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,12 +25,12 @@ public class PedidoCabecera {
     private LocalDateTime fechaCreacion;
 
     @OneToMany( cascade = CascadeType.ALL, orphanRemoval = true)
-    Set<PedidoDetalle> items;
+    Set<FacturaDetalle> items;
 
-    public PedidoCabecera() {
+    public FacturaCabecera() {
     }
 
-    public PedidoCabecera(Cliente cliente, Vendedor vendedor, ModoPago modoPago) {
+    public FacturaCabecera(Cliente cliente, Vendedor vendedor, ModoPago modoPago) {
         this.cliente = cliente;
         this.vendedor = vendedor;
         this.modoPago = modoPago;
@@ -65,11 +65,11 @@ public class PedidoCabecera {
         return fechaCreacion;
     }
 
-    public Set<PedidoDetalle> getItems() {
+    public Set<FacturaDetalle> getItems() {
         return items;
     }
 
-    public void setItems(Set<PedidoDetalle> items) {
+    public void setItems(Set<FacturaDetalle> items) {
         this.items = items;
     }
 
@@ -86,7 +86,7 @@ public class PedidoCabecera {
 
 
         double total = 0;
-        for (PedidoDetalle item: items ) total += item.getProducto().getPrecio() * item.getCantidad();
+        for (FacturaDetalle item: items ) total += item.getProducto().getPrecio() * item.getCantidad();
 
         pedidoDTO.put("importe-total", total);
 

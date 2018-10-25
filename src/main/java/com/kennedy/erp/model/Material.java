@@ -1,12 +1,9 @@
 package com.kennedy.erp.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-public class ModoPago {
+public class Material {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,10 +11,13 @@ public class ModoPago {
 
     private String descripcion;
 
-    public ModoPago() {
+    @OneToOne( cascade = CascadeType.ALL, orphanRemoval = true)
+    private StockMaterial stock;
+
+    public Material() {
     }
 
-    public ModoPago(String descripcion) {
+    public Material(String descripcion) {
         this.descripcion = descripcion;
     }
 
@@ -29,7 +29,11 @@ public class ModoPago {
         this.descripcion = descripcion;
     }
 
-    public long getId() {
-        return id;
+    public StockMaterial getStock() {
+        return stock;
+    }
+
+    public void setStock(StockMaterial stock) {
+        this.stock = stock;
     }
 }

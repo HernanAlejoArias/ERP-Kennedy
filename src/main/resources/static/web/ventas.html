@@ -14,7 +14,7 @@
 <body>
     <div class="jumbotron">
         <h1 class="display-3">ERP Metalurgica</h1>
-        <h2 class="display-6">Pedidos(Compras)</h2>
+        <h2 class="display-6">Pedidos(Ventas)</h2>
     </div>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
         <p class="navbar-title align-middle">Alta Pedido</p>
@@ -32,10 +32,10 @@
                     <a class="nav-link" href="clientes.html">Clientes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="ventas.html">Ventas</a>
+                    <a class="nav-link" href="ventas.html">Ventas<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="compras.html">Compras<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="compras.html">Compras</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="facturas.html">Facturacion</a>
@@ -63,7 +63,7 @@
                                 <label for="InputNroPedido">Nro de Pedido</label>
                                 <input type="text" name="nroPedido" class="form-control" id="InputNroPedido" placeholder="#">
 
-                                <button id="btn-pedido-material-nro-search" type="button" class="btn btn-outline-primary">Buscar</button>
+                                <button id="btn-pedido-nro-search" type="button" class="btn btn-outline-primary">Buscar</button>
                             </div>
                         </div>
                     </div>
@@ -74,8 +74,23 @@
 
             <div class="row">
                 <div class="col-6 form-group">
-                    <label for="InputIdProveedor">Proveedor</label>
-                    <input type="number" name="id-proveedor" class="form-control" id="InputIdProveedor" placeholder="Ingresar el ID del Proveedor">
+                    <label for="InputIdCliente">Cliente</label>
+                    <input type="number" name="id-cliente" class="form-control" id="InputIdCliente" placeholder="Ingresar el ID del cliente">
+                </div>
+                <div class="col-6 form-group">
+                    <label for="InputIdVendedor">Vendedor</label>
+                    <input type="number" name="id-vendedor" class="form-control" id="InputIdVendedor" placeholder="Ingresar el ID del vendedor">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 form-group">
+                    <label for="InputModoPago">Modo de Pago</label>
+                    <input type="number" name="modo-pago" class="form-control" id="InputModoPago" placeholder="ID modo de pago">
+                </div>
+                <div class="col-6 form-group">
+                    <label for="ImporteTotal">Importe Total</label>
+                    <input type="number" name="importe-total" class="form-control" id="ImporteTotal" placeholder="999999.99">
                 </div>
             </div>
 
@@ -83,42 +98,55 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">ID Material</th>
+                        <th scope="col">ID Producto</th>
                         <th scope="col">Cantidad</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">SubTotal</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="item" id="tr-0">
                         <th scope="row">1</th>
-                        <td> <input class="item-id-material" type="text"></td>
-                        <td> <input class="item-cantidad-material" type="number"></td>
+                        <td> <input class="item-id-producto" type="text"></td>
+                        <td> <input class="item-cantidad-producto" type="number"></td>
+                        <td> <input class="item-precio-producto" type="number"></td>
+                        <td> <input class="item-sub-total" type="number"></td>
                     </tr>
                     <tr class="item" id="tr-1">
                         <th scope="row">2</th>
-                        <td> <input class="item-id-material" type="text"></td>
-                        <td> <input class="item-cantidad-material" type="number"></td>
+                        <td> <input class="item-id-producto" type="text"></td>
+                        <td> <input class="item-cantidad-producto" type="number"></td>
+                        <td> <input class="item-precio-producto" type="number"></td>
+                        <td> <input class="item-sub-total" type="number"></td>
                     </tr>
                     <tr class="item" id="tr-2">
                         <th scope="row">3</th>
-                        <td> <input class="item-id-material" type="text"></td>
-                        <td> <input class="item-cantidad-material" type="number"></td>
+                        <td> <input class="item-id-producto" type="text"></td>
+                        <td> <input class="item-cantidad-producto" type="number"></td>
+                        <td> <input class="item-precio-producto" type="number"></td>
+                        <td> <input class="item-sub-total" type="number"></td>
                     </tr>
                     <tr class="item" id="tr-3">
                         <th scope="row">4</th>
-                        <td> <input class="item-id-material" type="text"></td>
-                        <td> <input class="item-cantidad-material" type="number"></td>
+                        <td> <input class="item-id-producto" type="text"></td>
+                        <td> <input class="item-cantidad-producto" type="number"></td>
+                        <td> <input class="item-precio-producto" type="number"></td>
+                        <td> <input class="item-sub-total" type="number"></td>
                     </tr>
                     <tr class="item" id="tr-4">
                         <th scope="row">5</th>
-                        <td> <input class="item-id-material" type="text"></td>
-                        <td> <input class="item-cantidad-material" type="number"></td>
+                        <td> <input class="item-id-producto" type="text"></td>
+                        <td> <input class="item-cantidad-producto" type="number"></td>
+                        <td> <input class="item-precio-producto" type="number"></td>
+                        <td> <input class="item-sub-total" type="number"></td>
                     </tr>
+
                 </tbody>
             </table>
 
-            <button id="btn-guardar-pedido-mat" class="btn btn-primary">Guardar</button>
+            <button id="btn-guardar-pedido" class="btn btn-primary">Guardar</button>
             <button id="btn-cancelar-pedido" class="btn btn-danger">Cancelar</button>
-            <button id="btn-entrada-mercaderia" class="btn btn-success">Entrada Mercaderia</button>
+            <button id="btn-facturar-pedido" class="btn btn-success">Facturar</button>
         </form>
     </div>
 

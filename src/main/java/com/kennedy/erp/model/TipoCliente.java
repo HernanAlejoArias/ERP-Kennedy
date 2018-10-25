@@ -21,6 +21,10 @@ public class TipoCliente {
         this.descripcion = descripcion;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
