@@ -1,11 +1,8 @@
 package com.kennedy.erp.controller;
 
 import com.kennedy.erp.model.Item;
-import org.graalvm.compiler.lir.alloc.lsra.LinearScan;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class PedidoDTO {
 
@@ -15,10 +12,8 @@ public class PedidoDTO {
 
     private long idModoPago;
 
-    //private List<Map<String, Long>> items;
     private List<Item> items = new ArrayList<>();
 
-//    public PedidoDTO(long idCliente, long idVendedor, long idModoPago,  List<Map<String, Long>> items) {
     public PedidoDTO(long idCliente, long idVendedor, long idModoPago,  List<Item> items) {
         this.idCliente = idCliente;
         this.idVendedor = idVendedor;
@@ -44,12 +39,10 @@ public class PedidoDTO {
         this.idVendedor = idVendedor;
     }
 
-//    public List<Map<String, Long>> getItems() {
     public List<Item> getItems() {
         return items;
     }
 
-//    public void setItems(List<Map<String, Long>> items) {
     public void setItems(List<Item> items) {
         this.items = items;
     }
