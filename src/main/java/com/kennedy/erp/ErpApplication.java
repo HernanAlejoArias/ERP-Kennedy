@@ -24,8 +24,9 @@ public class ErpApplication {
 									  ProductoRepository productoRepository, ModoPagoRepository modoPagoRepository,
 									  PedidoCabeceraRepository pedidoCabeceraRepository, PedidoDetalleRepository pedidoDetalleRepository,
 									  StockProduccionRepository stockProductosRepository, ProveedorRepository proveedorRepository,
-									  MaterialRepository materialRepository, CuentaContableRepository cuentaContableRepository
-
+									  MaterialRepository materialRepository, CuentaContableRepository cuentaContableRepository,
+									  FamiliaresRepository familiaresRepository, CategoriaRepository categoriaRepository,
+									  CarreraRepository carreraRepository, EstudiosRepository estudiosRepository
 									) {
 		return (args) -> {
 
@@ -130,6 +131,23 @@ public class ErpApplication {
 			aluminio.setStock(entradaMaterial2);
 			materialRepository.save(aluminio);
 
+			Familiares familiares1 = new Familiares("Javier","Matias", 33401049,empleado1,"jmk.fernandez@gmail.com","Primo");
+			familiaresRepository.save(familiares1);
+
+			Categoria categoria1 = new Categoria("A1");
+			categoriaRepository.save(categoria1);
+
+			Categoria categoria2 = new Categoria("A2");
+			categoriaRepository.save(categoria2);
+
+			Categoria categoria3 = new Categoria("A3");
+			categoriaRepository.save(categoria3);
+
+			Carrera carrera1 = new Carrera(empleado1,categoria2,"10/10/2010","10/10/2015");
+			carreraRepository.save(carrera1);
+
+			Estudios estudios1 = new Estudios(empleado1,"Secundario");
+			estudiosRepository.save(estudios1);
 		};
 	}
 }

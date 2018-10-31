@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+
+<body>
+<div class="jumbotron">
+    <h1 class="display-3">ERP Metalurgica</h1>
+    <h2 class="display-6">RRHH</h2>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <p class="navbar-title align-middle">Alta/Modificacion de Familiares</p>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="clientes.html">Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ventas.html">Ventas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="compras.html">Compras</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="reporte.html">Reporte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="RRHH.html">RRHH</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="AltaEstudio.html">Estudios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="AltaCarrera.html">Carrera</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="AltaCategoria.html">Categoria</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="AltaFamiliares.html">Familiares<span class="sr-only">(current)</span></a>
+                </li>                
+            </ul>
+        </div>
+    </nav>
+<div class="container">
+    <form id="alta-familiar">
+
+        <div class="form-group">
+            <label for="InputNombre">Nombre</label>
+            <input type="text" name="nombre" class="form-control" id="InputNombre" placeholder="Ricardo Roberto">
+        </div>
+        <div class="form-group">
+            <label for="InputApellido">Apellido</label>
+            <input type="text" name="apellido" class="form-control" id="InputApellido" placeholder="Rodriguez">
+        </div>
+        <div class="form-group">
+            <label for="InputApellido">Parentezco</label>
+            <input type="text" name="parentezco" class="form-control" id="Inputparentezco" placeholder="Hermano">
+        </div>
+
+        <div class="form-group">
+            <label for="InputDNI">DNI</label>
+            <input type="number" name="dni" class="form-control" id="InputDNI">
+        </div>
+        <div class="form-group">
+            <label for="InputDNI">Empleado</label>
+            <input type="number" name="id_empleado" class="form-control" id="Inputid_empleado">
+        </div>
+
+          <div class="form-group">
+            <label for="Inputmail">Direccion de Email</label>
+            <input type="mail" name="mail" class="form-control" id="Inputmail" aria-describedby="mailHelp" placeholder="casilla@cliente.com">
+        </div>
+
+        <div class="form-group">
+            <label for="InputDireccion">Direccion</label>
+            <input type="text" name="direccion" class="form-control" id="InputDireccion" placeholder="Calle 999, Provincia, Pais">
+        </div>
+
+        <button id="guardar-familiar" class="btn btn-primary">Guardar</button>
+        <button id="cancelar-familiar" class="btn btn-danger">Cancelar</button>
+    </form>
+</div>
+
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+<script src="../web/js/main2.js"></script>
+</body>
+
+</html>

@@ -58,6 +58,20 @@ public class ERPController {
     @Autowired
     LibroDiarioRepository libroDiarioRepository;
 
+    @Autowired
+    CategoriaRepository categoriaRepository;
+
+    @Autowired
+    EmpleadoRepository empleadoRepository;
+
+    @Autowired
+    CarreraRepository carreraRepository;
+
+    @Autowired
+    FamiliaresRepository familiaresRepository;
+
+    @Autowired
+    EstudiosRepository estudiosRepository;
 
     @PostMapping("/guardar-cliente")
     public ResponseEntity guardarCliente (@RequestBody ClienteDTO clienteDTO){
@@ -365,6 +379,99 @@ public class ERPController {
             return new ResponseEntity<>(ResponseMessages.ERROR_ORDER_NOT_FOUND, HttpStatus.BAD_REQUEST);
         }
 
+    }
+    @PostMapping("/alta-categoria")
+    public ResponseEntity altaCategoria (@RequestBody CategoriaData nuevaCategoriaData){
+
+
+        Categoria nuevaCategoria = new Categoria(
+                nuevaCategoriaData.getDescripcion()
+        );
+
+        categoriaRepository.save(nuevaCategoria);
+
+        System.out.println(nuevaCategoria.getDescripcion());
+
+        Map<String, Long> responseMessage = new HashMap<>();
+        responseMessage.put("ID Categoria", nuevaCategoria.getId());
+        return  new ResponseEntity<>(responseMessage , HttpStatus.CREATED);
+    }
+
+    @PostMapping("/alta-carrera")
+    public ResponseEntity altaCarrera (@RequestBody CarreraData nuevaCarreraData){
+
+        System.out.println("Categoriaaa: "+nuevaCarreraData.getid_Categoria());
+        System.out.println(nuevaCarreraData.getfecha_Desde());
+        System.out.println(nuevaCarreraData.getfecha_Hasta());
+        Categoria categoriaSeleccionado=null;
+        //Categoria categoriaSeleccionado = categoriaRepository.findById(nuevaCarreraData.getid_Categoria()).orElse(null);
+        Empleado empleadoSeleccionado = empleadoRepository.findById(nuevaCarreraData.getid_Empleado()).orElse(null);
+
+        Carrera nuevaCarrera = new Carrera(
+                empleadoSeleccionado,
+                categoriaSeleccionado,
+                nuevaCarreraData.getfecha_Desde(),
+                nuevaCarreraData.getfecha_Hasta()
+        );
+
+        carreraRepository.save(nuevaCarrera);
+
+
+        Map<String, Long> responseMessage = new HashMap<>();
+        responseMessage.put("ID Carrera", nuevaCarrera.getId());
+        return  new ResponseEntity<>(responseMessage , HttpStatus.CREATED);
+    }
+
+    @PostMapping("/alta-familiar")
+    public ResponseEntity altaFamiliar (@RequestBody FamiliaresData nuevoFamiliaresData){
+
+        //System.out.println("Categoriaaa: "+nuevoFamiliaresData.getApellido());
+        //System.out.println(nuevoFamiliaresData.getfecha_Desde());
+        //System.out.println(nuevoFamiliaresData.getfecha_Hasta());
+
+        Empleado empleadoSeleccionado = empleadoRepository.findById(nuevoFamiliaresData.getid_Empleado()).orElse(null);
+
+
+
+        Familiares nuevoFamiliar = new Familiares(
+                nuevoFamiliaresData.getNombre(),
+                nuevoFamiliaresData.getApellido(),
+                nuevoFamiliaresData.getDni(),
+                empleadoSeleccionado,
+                nuevoFamiliaresData.getMail(),
+                nuevoFamiliaresData.getParentezco()
+        );
+
+        familiaresRepository.save(nuevoFamiliar);
+
+
+        Map<String, Long> responseMessage = new HashMap<>();
+        responseMessage.put("ID familiar", nuevoFamiliar.getId());
+        return  new ResponseEntity<>(responseMessage , HttpStatus.CREATED);
+    }
+
+    @PostMapping("/alta-Estudios")
+    public ResponseEntity altaEstudio (@RequestBody EstudiosData nuevoEstudiosData){
+
+        System.out.println("Descripcion: "+nuevoEstudiosData.get_descripcion());
+        //System.out.println(nuevoFamiliaresData.getfecha_Desde());
+        //System.out.println(nuevoFamiliaresData.getfecha_Hasta());
+
+        Empleado empleadoSeleccionado = empleadoRepository.findById(nuevoEstudiosData.getid_Empleado()).orElse(null);
+
+
+
+        Estudios nuevoEstudio = new Estudios(
+                empleadoSeleccionado,
+                nuevoEstudiosData.get_descripcion()
+        );
+
+        estudiosRepository.save(nuevoEstudio);
+
+
+        Map<String, Long> responseMessage = new HashMap<>();
+        responseMessage.put("ID Estudios", nuevoEstudio.getId());
+        return  new ResponseEntity<>(responseMessage , HttpStatus.CREATED);
     }
 
     private Map<String, Object> makeMap(String key, Object value) {
