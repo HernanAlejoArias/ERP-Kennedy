@@ -31,7 +31,7 @@ function setListeners(){
         event.preventDefault();
 
         let idCliente = $('#InputIdCliente').val();
-        let apiCallURL = "http://localhost:8080/api/buscar-cliente/" + idCliente;
+        let apiCallURL = "/api/buscar-cliente/" + idCliente;
 
         $.get(apiCallURL, function (responseData){
             console.log("GET")
@@ -161,7 +161,7 @@ function setListeners(){
     $("#btn-entrada-mercaderia").click(function(event){
         event.preventDefault();
 
-        let apiCallURL = "http://localhost:8080/api/entrada-material/" + ingresoPedido;
+        let apiCallURL = "/api/entrada-material/" + ingresoPedido;
 
         $.post(apiCallURL, function(responseData){
             console.log("Generando Entrada de Material")
